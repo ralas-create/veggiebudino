@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>VeggieBudino — Garden Fresh</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --primary: #A7D930;
+    --secondary: #9DC183;
+    --accent: #F7E6CA;
+    --bg: #FAFAF8;
+    --text: #2C2C2C;
+    --text-light: #6B6B6B;
+    --card-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    --radius: 20px;
+  }
+
+  body {
+    font-family: 'Raleway', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 390px;
+    margin: 0 auto;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  /* Header */
+  .header {
+    padding: 20px 24px 16px;
+    background: white;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .header-top {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 4px;
+  }
+  .greeting { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-light); font-weight: 400; }
+  .app-name { font-family: 'Inter', sans-serif; font-size: 26px; font-weight: 700; color: var(--text); }
+  .app-name span { color: var(--primary); }
+  .subtitle { font-size: 14px; color: var(--text-light); margin-top: 2px; }
+
+  /* Style badge */
+  .style-badge {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    z-index: 100;
+    max-width: 390px;
+    margin: 0 auto;
+  }
+  .header { margin-top: 36px; }
+
+  /* Section */
+  .section { padding: 20px 24px; }
+  .section-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Weekly planner */
+  .planner {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .day {
+    background: white;
+    border-radius: 14px;
+    padding: 10px 4px;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    transition: all 0.2s;
+  }
+  .day.active {
+    background: var(--primary);
+    color: white;
+  }
+  .day-name { font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .day-num { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 700; margin-top: 4px; }
+  .day-dots { display: flex; gap: 3px; justify-content: center; margin-top: 6px; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--secondary); }
+  .day.active .dot { background: white; }
+
+  /* Meal slots */
+  .meals { display: flex; flex-direction: column; gap: 12px; }
+  .meal-slot {
+    background: white;
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--card-shadow);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .meal-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .meal-icon.lunch { background: rgba(167,217,48,0.15); }
+  .meal-icon.dinner { background: rgba(157,193,131,0.15); }
+  .meal-info { flex: 1; }
+  .meal-label { font-family: 'Inter', sans-serif; font-size: 11px; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .meal-name { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; margin-top: 2px; }
+  .meal-meta { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+  /* Recipe card */
+  .recipe-card {
+    background: white;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 14px;
+  }
+  .recipe-img {
+    height: 160px;
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    position: relative;
+  }
+  .recipe-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: white;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+  .sibo-badge {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: var(--accent);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #8B7335;
+  }
+  .recipe-body { padding: 16px; }
+  .recipe-title { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 700; }
+  .recipe-desc { font-size: 13px; color: var(--text-light); margin-top: 4px; line-height: 1.4; }
+  .recipe-tags { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .tag {
+    background: rgba(167,217,48,0.12);
+    color: #5A7A10;
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .recipe-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+  }
+  .recipe-stat { text-align: center; }
+  .recipe-stat-val { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; color: var(--primary); }
+  .recipe-stat-label { font-size: 10px; color: var(--text-light); margin-top: 1px; }
+
+  /* Shopping list */
+  .shop-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .checkbox {
+    width: 24px; height: 24px;
+    border-radius: 8px;
+    border: 2px solid var(--secondary);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .checkbox.checked { background: var(--primary); border-color: var(--primary); color: white; font-size: 14px; }
+  .shop-item.checked-item { opacity: 0.4; text-decoration: line-through; }
+  .shop-name { font-size: 14px; flex: 1; }
+  .shop-qty { font-family: 'Inter', sans-serif; font-size: 13px; color: var(--text-light); }
+
+  /* Nav */
+  .nav {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: white;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0 20px;
+    max-width: 390px;
+    margin: 0 auto;
+  }
+  .nav-item { text-align: center; font-size: 10px; color: var(--text-light); font-family: 'Inter', sans-serif; font-weight: 500; }
+  .nav-item.active { color: var(--primary); }
+  .nav-icon { font-size: 22px; margin-bottom: 2px; }
+</style>
+</head>
+<body>
+
+<div class="style-badge">Propuesta A — Garden Fresh</div>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="greeting">Buenos días, Sara ☀️</div>
+      <div class="app-name">Veggie<span>Budino</span></div>
+    </div>
+    <div style="font-size:28px;">🌿</div>
+  </div>
+  <div class="subtitle">Semana del 30 Mar — 5 Abr</div>
+</div>
+
+<!-- Weekly planner -->
+<div class="section">
+  <div class="section-title">📅 Tu semana</div>
+  <div class="planner">
+    <div class="day"><div class="day-name">Lun</div><div class="day-num">30</div><div class="day-dots"><div class="dot"></div><div class="dot"></div></div></div>
+    <div class="day active"><div class="day-name">Mar</div><div class="day-num">31</div><div class="day-dots"><div class="dot"></div><div class="dot"></div></div></div>
+    <div class="day"><div class="day-name">Mié</div><div class="day-num">1</div><div class="day-dots"><div class="dot"></div><div class="dot"></div></div></div>
+    <div class="day"><div class="day-name">Jue</div><div class="day-num">2</div><div class="day-dots"><div class="dot"></div></div></div>
+    <div class="day"><div class="day-name">Vie</div><div class="day-num">3</div><div class="day-dots"><div class="dot"></div><div class="dot"></div></div></div>
+    <div class="day"><div class="day-name">Sáb</div><div class="day-num">4</div><div class="day-dots"></div></div>
+    <div class="day"><div class="day-name">Dom</div><div class="day-num">5</div><div class="day-dots"></div></div>
+  </div>
+
+  <div class="meals">
+    <div class="meal-slot">
+      <div class="meal-icon lunch">🥗</div>
+      <div class="meal-info">
+        <div class="meal-label">Comida</div>
+        <div class="meal-name">Pad Thai de tofu</div>
+        <div class="meal-meta">25 min · Asiática · SIBO ✓</div>
+      </div>
+    </div>
+    <div class="meal-slot">
+      <div class="meal-icon dinner">🍝</div>
+      <div class="meal-info">
+        <div class="meal-label">Cena</div>
+        <div class="meal-name">Pasta al pesto de albahaca</div>
+        <div class="meal-meta">20 min · Italiana · Congelado</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Recipe card -->
+<div class="section">
+  <div class="section-title">🔥 Recetas populares</div>
+  <div class="recipe-card">
+    <div class="recipe-img">
+      🍜
+      <div class="recipe-badge">⏱ 25 min</div>
+      <div class="sibo-badge">SIBO ✓</div>
+    </div>
+    <div class="recipe-body">
+      <div class="recipe-title">Curry rojo thai con tofu</div>
+      <div class="recipe-desc">Cremoso curry con leche de coco, verduras de temporada y arroz basmati</div>
+      <div class="recipe-tags">
+        <div class="tag">Asiática</div>
+        <div class="tag">Rápida</div>
+        <div class="tag">Alto en proteína</div>
+      </div>
+      <div class="recipe-footer">
+        <div class="recipe-stat"><div class="recipe-stat-val">320</div><div class="recipe-stat-label">kcal</div></div>
+        <div class="recipe-stat"><div class="recipe-stat-val">18g</div><div class="recipe-stat-label">proteína</div></div>
+        <div class="recipe-stat"><div class="recipe-stat-val">12g</div><div class="recipe-stat-label">fibra</div></div>
+        <div class="recipe-stat"><div class="recipe-stat-val">4.8</div><div class="recipe-stat-label">⭐</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Shopping list preview -->
+<div class="section">
+  <div class="section-title">🛒 Lista de la compra</div>
+  <div class="shop-item"><div class="checkbox checked">✓</div><div class="shop-name checked-item">Tofu firme</div><div class="shop-qty">400g</div></div>
+  <div class="shop-item"><div class="checkbox checked">✓</div><div class="shop-name checked-item">Leche de coco</div><div class="shop-qty">2 latas</div></div>
+  <div class="shop-item"><div class="checkbox"></div><div class="shop-name">Albahaca fresca</div><div class="shop-qty">1 manojo</div></div>
+  <div class="shop-item"><div class="checkbox"></div><div class="shop-name">Piñones</div><div class="shop-qty">100g</div></div>
+  <div class="shop-item"><div class="checkbox"></div><div class="shop-name">Fideos de arroz</div><div class="shop-qty">250g</div></div>
+</div>
+
+<div class="nav">
+  <div class="nav-item active"><div class="nav-icon">🏠</div>Inicio</div>
+  <div class="nav-item"><div class="nav-icon">📖</div>Recetas</div>
+  <div class="nav-item"><div class="nav-icon">📅</div>Plan</div>
+  <div class="nav-item"><div class="nav-icon">🛒</div>Compra</div>
+  <div class="nav-item"><div class="nav-icon">🍳</div>Cocinar</div>
+</div>
+
+</body>
+</html>
