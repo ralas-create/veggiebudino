@@ -32,7 +32,7 @@ export default function Shopping() {
   const { t, i18n } = useTranslation()
   const lang = i18n.language
   const { plan } = useWeekPlan()
-  const { history, addEntry, removeEntry, avgPerWeek } = useShoppingHistory()
+  const { history, addEntry, removeEntry, avgPerWeek, monthlyStats } = useShoppingHistory()
   const [checked, setChecked] = useState(new Set())
   const [people, setPeople] = useState(() => {
     try { return parseInt(localStorage.getItem('veggiebudino-people')) || 2 } catch { return 2 }
@@ -175,7 +175,7 @@ export default function Shopping() {
             <button onClick={() => setShowHistory(!showHistory)} className="font-heading font-semibold text-sm text-terra">
               📊 {lang === 'es' ? 'Ver historial de gastos' : 'View spending history'}
             </button>
-            {showHistory && <HistorySection history={history} removeEntry={removeEntry} avgPerWeek={avgPerWeek} lang={lang} />}
+            {showHistory && <HistorySection history={history} removeEntry={removeEntry} avgPerWeek={avgPerWeek} monthlyStats={monthlyStats} lang={lang} />}
           </div>
         )}
       </div>
@@ -314,38 +314,105 @@ export default function Shopping() {
   )
 }
 
-function HistorySection({ history, removeEntry, avgPerWeek, lang }) {
+function HistorySection({ history, removeEntry, avgPerWeek, monthlyStats, lang }) {
+  const ms = monthlyStats
+  const dayLabels = lang === 'es' ? ['L', 'M', 'X', 'J', 'V', 'S', 'D'] : ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+
   return (
-    <div className="mt-3 bg-white rounded-2xl p-4 shadow-[0_4px_12px_rgba(199,91,60,0.08)]">
-      <h3 className="font-heading font-bold text-sm mb-2">📊 {lang === 'es' ? 'Historial de compras' : 'Shopping history'}</h3>
-      <div className="flex gap-3 mb-3">
-        <div className="flex-1 bg-cream rounded-lg p-2 text-center">
-          <p className="font-heading text-lg font-bold text-terra">{avgPerWeek.toFixed(0)}€</p>
-          <p className="text-[9px] text-charcoal-light">{lang === 'es' ? 'media/semana' : 'avg/week'}</p>
+    <div className="mt-3 space-y-3">
+      {/* Monthly summary */}
+      <div className="bg-white rounded-2xl p-4 shadow-[0_4px_12px_rgba(199,91,60,0.08)]">
+        <h3 className="font-heading font-bold text-sm mb-3">
+          📅 {lang === 'es' ? ms.monthName : ms.monthNameEn}
+        </h3>
+
+        <div className="flex gap-3 mb-4">
+          <div className="flex-1 bg-cream rounded-lg p-3 text-center">
+            <p className="font-heading text-xl font-bold text-terra">{ms.currentMonthTotal.toFixed(0)}€</p>
+            <p className="text-[9px] text-charcoal-light">{lang === 'es' ? 'este mes' : 'this month'}</p>
+          </div>
+          <div className="flex-1 bg-cream rounded-lg p-3 text-center">
+            <p className="font-heading text-xl font-bold text-charcoal-light">{ms.otherMonthsAvg.toFixed(0)}€</p>
+            <p className="text-[9px] text-charcoal-light">{lang === 'es' ? 'media otros meses' : 'avg other months'}</p>
+          </div>
+          {ms.diffVsAvg !== 0 && (
+            <div className="flex-1 bg-cream rounded-lg p-3 text-center">
+              <p className={`font-heading text-xl font-bold ${ms.diffVsAvg > 0 ? 'text-terra' : 'text-forest'}`}>
+                {ms.diffVsAvg > 0 ? '+' : ''}{ms.diffVsAvg.toFixed(0)}€
+              </p>
+              <p className="text-[9px] text-charcoal-light">{lang === 'es' ? 'vs media' : 'vs avg'}</p>
+            </div>
+          )}
         </div>
-        <div className="flex-1 bg-cream rounded-lg p-2 text-center">
-          <p className="font-heading text-lg font-bold text-terra">{history.length}</p>
-          <p className="text-[9px] text-charcoal-light">{lang === 'es' ? 'compras' : 'trips'}</p>
-        </div>
-        <div className="flex-1 bg-cream rounded-lg p-2 text-center">
-          <p className="font-heading text-lg font-bold text-terra">{history.reduce((s, e) => s + (e.actual || 0), 0).toFixed(0)}€</p>
-          <p className="text-[9px] text-charcoal-light">total</p>
+
+        {/* Calendar grid */}
+        <div className="grid grid-cols-7 gap-1">
+          {/* Day headers */}
+          {dayLabels.map((d, i) => (
+            <div key={i} className="text-center text-[9px] font-heading font-semibold text-charcoal-light py-1">{d}</div>
+          ))}
+
+          {/* Empty cells for offset */}
+          {Array.from({ length: ms.startOffset }, (_, i) => (
+            <div key={`empty-${i}`} />
+          ))}
+
+          {/* Day cells */}
+          {ms.calendar.map(({ day, total, entries }) => {
+            const hasSpending = total > 0
+            const isToday = day === new Date().getDate()
+            return (
+              <div
+                key={day}
+                className={`text-center py-1.5 rounded-lg relative ${
+                  hasSpending ? 'bg-terra/15' : ''
+                } ${isToday ? 'ring-2 ring-terra' : ''}`}
+              >
+                <p className={`text-[11px] font-heading ${hasSpending ? 'font-bold text-terra' : 'text-charcoal-light'}`}>
+                  {day}
+                </p>
+                {hasSpending && (
+                  <p className="text-[8px] font-heading font-bold text-terra">{total.toFixed(0)}€</p>
+                )}
+              </div>
+            )
+          })}
         </div>
       </div>
-      <div className="space-y-2 max-h-48 overflow-y-auto">
-        {history.map(entry => (
-          <div key={entry.id} className="flex items-center justify-between py-1.5 border-b border-cream-dark last:border-0">
-            <p className="text-xs font-heading">
-              {new Date(entry.date).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { day: 'numeric', month: 'short' })}
-              <span className="text-charcoal-light"> · {entry.people} {lang === 'es' ? 'pers' : 'ppl'}</span>
-            </p>
-            <div className="flex items-center gap-2">
-              <span className="font-heading font-bold text-sm text-terra">{entry.actual}€</span>
-              {entry.estimated > 0 && <span className="text-[9px] text-charcoal-light">(est: {entry.estimated.toFixed(0)}€)</span>}
-              <button onClick={() => removeEntry(entry.id)} className="text-charcoal-light text-xs">✕</button>
-            </div>
+
+      {/* General stats */}
+      <div className="bg-white rounded-2xl p-4 shadow-[0_4px_12px_rgba(199,91,60,0.08)]">
+        <h3 className="font-heading font-bold text-sm mb-2">📊 {lang === 'es' ? 'Historial general' : 'Overall history'}</h3>
+        <div className="flex gap-3 mb-3">
+          <div className="flex-1 bg-cream rounded-lg p-2 text-center">
+            <p className="font-heading text-lg font-bold text-terra">{avgPerWeek.toFixed(0)}€</p>
+            <p className="text-[9px] text-charcoal-light">{lang === 'es' ? 'media/compra' : 'avg/trip'}</p>
           </div>
-        ))}
+          <div className="flex-1 bg-cream rounded-lg p-2 text-center">
+            <p className="font-heading text-lg font-bold text-terra">{history.length}</p>
+            <p className="text-[9px] text-charcoal-light">{lang === 'es' ? 'compras' : 'trips'}</p>
+          </div>
+          <div className="flex-1 bg-cream rounded-lg p-2 text-center">
+            <p className="font-heading text-lg font-bold text-terra">{history.reduce((s, e) => s + (e.actual || 0), 0).toFixed(0)}€</p>
+            <p className="text-[9px] text-charcoal-light">total</p>
+          </div>
+        </div>
+
+        {/* Entry list */}
+        <div className="space-y-2 max-h-48 overflow-y-auto">
+          {history.map(entry => (
+            <div key={entry.id} className="flex items-center justify-between py-1.5 border-b border-cream-dark last:border-0">
+              <p className="text-xs font-heading">
+                {new Date(entry.date).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { weekday: 'short', day: 'numeric', month: 'short' })}
+                <span className="text-charcoal-light"> · {entry.people} {lang === 'es' ? 'pers' : 'ppl'}</span>
+              </p>
+              <div className="flex items-center gap-2">
+                <span className="font-heading font-bold text-sm text-terra">{entry.actual}€</span>
+                <button onClick={() => removeEntry(entry.id)} className="text-charcoal-light text-xs">✕</button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
