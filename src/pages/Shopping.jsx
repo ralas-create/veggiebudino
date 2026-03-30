@@ -100,11 +100,20 @@ export default function Shopping() {
       const section = item.section || 'other'
       if (!grouped[section]) grouped[section] = []
 
-      // Estimate cost scaled: if the reference unit is 400g and we need 800g, that's 2x the price
-      const refQty = parseFloat(item.priceInfo.refUnit) || 1
-      const needed = item.scaledQty || refQty
-      const multiplier = Math.max(1, Math.ceil(needed / refQty))
-      item.estimatedCost = item.priceInfo.price * multiplier
+      // Simple cost estimation: each unique ingredient = 1x its base price
+      // If you need a lot more than the reference pack, buy 2
+      const basePrice = item.priceInfo.price || 2
+      const refQtyNum = parseFloat(item.priceInfo.refUnit) || 0
+
+      let multiplier = 1
+      if (refQtyNum > 0 && item.scaledQty > 0) {
+        // Compare scaled quantity needed vs what one pack gives you
+        multiplier = Math.max(1, Math.ceil(item.scaledQty / refQtyNum))
+        // Sanity cap: never more than 10x one ingredient for a week
+        multiplier = Math.min(multiplier, 10)
+      }
+
+      item.estimatedCost = basePrice * multiplier
 
       grouped[section].push(item)
       total += item.estimatedCost
