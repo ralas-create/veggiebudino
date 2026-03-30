@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+/* Earth & Spice theme tokens */
+@theme {
+  --color-terra: #C75B3C;
+  --color-terra-light: #E8845C;
+  --color-terra-dark: #A34830;
+  --color-forest: #478778;
+  --color-forest-light: #5EA892;
+  --color-forest-dark: #356858;
+  --color-khaki: #D5C58A;
+  --color-khaki-light: #E8DDB5;
+  --color-cream: #FDF8F3;
+  --color-cream-dark: #F5EDE3;
+  --color-charcoal: #3D3D3D;
+  --color-charcoal-light: #7A7167;
+
+  --font-heading: 'Albert Sans', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-accent: 'Crimson Text', serif;
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Mobile-first container */
+#root {
+  max-width: 430px;
+  margin: 0 auto;
+  min-height: 100dvh;
+  position: relative;
+}

@@ -1,0 +1,98 @@
+{
+  "app": {
+    "name": "VeggieBudino"
+  },
+  "nav": {
+    "home": "Home",
+    "recipes": "Recipes",
+    "planner": "Plan",
+    "shopping": "Shop",
+    "cooking": "Cook",
+    "settings": "Settings"
+  },
+  "home": {
+    "greeting": "Good morning",
+    "weekOf": "Week of {{start}} — {{end}}",
+    "yourWeek": "Your week",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "emptySlot": "Tap to add",
+    "popularRecipes": "Popular recipes",
+    "quickAccess": "Quick access"
+  },
+  "recipes": {
+    "title": "Recipes",
+    "search": "Search recipes...",
+    "filters": "Filters",
+    "all": "All",
+    "quick": "Quick",
+    "batchCooking": "Batch cooking",
+    "fewIngredients": "Few ingredients",
+    "siboFriendly": "SIBO",
+    "freezable_filter": "Freezable",
+    "minutes": "{{count}} min",
+    "ingredients": "{{count}} ingredients",
+    "freezable": "Freezable",
+    "servings": "{{count}} servings"
+  },
+  "planner": {
+    "title": "Planner",
+    "weekPlan": "Week plan",
+    "addRecipe": "Add recipe",
+    "lunch": "Lunch",
+    "dinner": "Dinner",
+    "clearWeek": "Clear week",
+    "generateList": "Generate shopping list"
+  },
+  "shopping": {
+    "title": "Shopping list",
+    "items": "{{count}} items",
+    "checked": "{{count}} checked",
+    "clearChecked": "Clear checked",
+    "empty": "Plan your week to generate the list",
+    "sections": {
+      "produce": "Fruits & vegetables",
+      "grains": "Grains & legumes",
+      "proteins": "Proteins",
+      "dairy": "Dairy alternatives",
+      "pantry": "Pantry",
+      "frozen": "Frozen",
+      "other": "Other"
+    }
+  },
+  "cooking": {
+    "title": "Sunday Mode",
+    "subtitle": "Prep your week",
+    "startCooking": "Start cooking",
+    "freeze": "Freeze",
+    "fridge": "Fridge",
+    "forDay": "For {{day}}",
+    "step": "Step {{number}}",
+    "done": "All done!",
+    "noPlan": "Plan your week first"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "siboMode": "SIBO mode",
+    "siboDescription": "Prioritize SIBO-friendly recipes across the app",
+    "darkMode": "Dark mode",
+    "about": "About VeggieBudino"
+  },
+  "days": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+  },
+  "nutrition": {
+    "calories": "kcal",
+    "protein": "protein",
+    "fiber": "fiber",
+    "iron": "iron",
+    "calcium": "calcium"
+  }
+}
