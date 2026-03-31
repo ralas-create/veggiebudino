@@ -170,14 +170,13 @@ export default function Shopping() {
         <div className="mt-6 bg-white rounded-2xl p-5 shadow-[0_4px_12px_rgba(199,91,60,0.08)]">
           <p className="text-charcoal-light text-sm text-center py-8">🛒 {t('shopping.empty')}</p>
         </div>
-        {history.length > 0 && (
-          <div className="mt-6">
-            <button onClick={() => setShowHistory(!showHistory)} className="font-heading font-semibold text-sm text-terra">
-              📊 {lang === 'es' ? 'Ver historial de gastos' : 'View spending history'}
-            </button>
-            {showHistory && <HistorySection history={history} removeEntry={removeEntry} avgPerWeek={avgPerWeek} monthlyStats={monthlyStats} lang={lang} />}
-          </div>
-        )}
+        <div className="mt-6">
+          <button onClick={() => setShowHistory(!showHistory)} className="font-heading font-semibold text-sm text-terra">
+            📊 {lang === 'es' ? 'Control de gastos' : 'Spending tracker'}
+            {showHistory ? ' ▲' : ' ▼'}
+          </button>
+          {showHistory && <HistorySection history={history} removeEntry={removeEntry} avgPerWeek={avgPerWeek} monthlyStats={monthlyStats} lang={lang} />}
+        </div>
       </div>
     )
   }
@@ -240,13 +239,16 @@ export default function Shopping() {
         </div>
       </div>
 
-      {history.length > 0 && (
-        <button onClick={() => setShowHistory(!showHistory)} className="mt-3 font-heading font-semibold text-sm text-terra">
-          📊 {lang === 'es' ? `Historial (media: ${avgPerWeek.toFixed(0)}€/sem)` : `History (avg: ${avgPerWeek.toFixed(0)}€/wk)`}
+      {/* Always show spending tracker */}
+      <div className="mt-4">
+        <button onClick={() => setShowHistory(!showHistory)} className="font-heading font-semibold text-sm text-terra">
+          📊 {lang === 'es'
+            ? `Control de gastos${history.length > 0 ? ` (media: ${avgPerWeek.toFixed(0)}€/compra)` : ''}`
+            : `Spending tracker${history.length > 0 ? ` (avg: ${avgPerWeek.toFixed(0)}€/trip)` : ''}`}
           {showHistory ? ' ▲' : ' ▼'}
         </button>
-      )}
-      {showHistory && <HistorySection history={history} removeEntry={removeEntry} avgPerWeek={avgPerWeek} lang={lang} />}
+      </div>
+      {showHistory && <HistorySection history={history} removeEntry={removeEntry} avgPerWeek={avgPerWeek} monthlyStats={monthlyStats} lang={lang} />}
 
       {/* Shopping list */}
       <div className="mt-5 space-y-4">
