@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'react'
-
-const STORAGE_KEY = 'veggiebudino-weekplan'
+import useSyncedState from './useSyncedState'
 
 const emptyPlan = {
   mon: { lunch: null, dinner: null },
@@ -13,18 +11,7 @@ const emptyPlan = {
 }
 
 export default function useWeekPlan() {
-  const [plan, setPlan] = useState(() => {
-    try {
-      const stored = localStorage.getItem(STORAGE_KEY)
-      return stored ? JSON.parse(stored) : { ...emptyPlan }
-    } catch {
-      return { ...emptyPlan }
-    }
-  })
-
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(plan))
-  }, [plan])
+  const [plan, setPlan] = useSyncedState('veggiebudino-weekplan', { ...emptyPlan })
 
   const setMeal = (day, meal, recipeId) => {
     setPlan(prev => ({
