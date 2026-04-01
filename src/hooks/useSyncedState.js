@@ -1,12 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
-import { isFirebaseConfigured, getFamilyCode, syncToCloud, loadFromCloud, listenToCloud } from '../firebase'
+import { isSyncConfigured, getFamilyCode, syncToCloud, loadFromCloud, listenToCloud } from '../sync'
 
 /**
  * Like useState but synced to:
  * 1. localStorage (always, for offline)
- * 2. Firebase Firestore (if configured + family code set) for cross-device sync
- *
- * When another device updates the cloud, this hook receives the update in real-time.
+ * 2. Supabase (if configured + family code set) for cross-device sync
  */
 export default function useSyncedState(key, initialValue) {
   const [value, setValue] = useState(() => {
@@ -20,12 +18,11 @@ export default function useSyncedState(key, initialValue) {
 
   const isRemoteUpdate = useRef(false)
 
-  // Save to localStorage on every change
+  // Save to localStorage on every change + sync to cloud
   useEffect(() => {
     localStorage.setItem(key, JSON.stringify(value))
 
-    // Also sync to cloud if not a remote update
-    if (!isRemoteUpdate.current && isFirebaseConfigured() && getFamilyCode()) {
+    if (!isRemoteUpdate.current && isSyncConfigured() && getFamilyCode()) {
       syncToCloud(key, value)
     }
     isRemoteUpdate.current = false
@@ -33,7 +30,7 @@ export default function useSyncedState(key, initialValue) {
 
   // Listen to cloud changes
   useEffect(() => {
-    if (!isFirebaseConfigured() || !getFamilyCode()) return
+    if (!isSyncConfigured() || !getFamilyCode()) return
 
     // Initial load from cloud
     loadFromCloud(key).then(cloudData => {
@@ -49,16 +46,12 @@ export default function useSyncedState(key, initialValue) {
 
     // Real-time listener
     const unsubscribe = listenToCloud(key, (cloudData) => {
-      const currentStr = JSON.stringify(value)
-      const cloudStr = JSON.stringify(cloudData)
-      if (cloudStr !== currentStr) {
-        isRemoteUpdate.current = true
-        setValue(cloudData)
-      }
+      isRemoteUpdate.current = true
+      setValue(cloudData)
     })
 
     return unsubscribe
-  }, [key]) // Only re-subscribe if key changes
+  }, [key])
 
   return [value, setValue]
 }

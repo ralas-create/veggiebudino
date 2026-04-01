@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>VeggieBudino QR</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<style>
+body { font-family: 'Segoe UI', sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; background: #FDF8F3; color: #3D3D3D; }
+h1 { color: #C75B3C; font-size: 28px; margin-bottom: 4px; }
+p { color: #7A7167; margin: 4px 0; }
+#qr { margin: 24px 0; }
+a { color: #C75B3C; }
+.url { font-size: 14px; background: white; padding: 12px 20px; border-radius: 12px; margin-top: 12px; box-shadow: 0 2px 8px rgba(199,91,60,0.08); }
+</style>
+</head>
+<body>
+<h1>🌱 VeggieBudino</h1>
+<p>Escanea el QR con el móvil para instalar la app</p>
+<div id="qr"></div>
+<div class="url"><a href="https://ralas-create.github.io/veggiebudino/">ralas-create.github.io/veggiebudino</a></div>
+<p style="font-size:12px; margin-top:16px;">En el móvil: pulsa "Añadir a pantalla de inicio" para instalarla como app</p>
+<script>
+var qr = qrcode(0, 'M');
+qr.addData('https://ralas-create.github.io/veggiebudino/');
+qr.make();
+document.getElementById('qr').innerHTML = qr.createSvgTag(6, 0);
+</script>
+</body>
+</html>
