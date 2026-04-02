@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { isSyncConfigured, getFamilyCode, setFamilyCode } from '../sync'
 
 export default function Settings() {
   const { t, i18n } = useTranslation()
   const lang = i18n.language
 
+  const navigate = useNavigate()
   const [siboMode, setSiboMode] = useState(() => localStorage.getItem('veggiebudino-sibo') === 'true')
   const [darkMode, setDarkMode] = useState(() => localStorage.getItem('veggiebudino-dark') === 'true')
   const [syncCode, setSyncCode] = useState(() => getFamilyCode() || '')
@@ -120,6 +122,24 @@ export default function Settings() {
             <div className={`w-6 h-6 bg-white rounded-full absolute top-1 shadow-sm transition-all ${siboMode ? 'left-7' : 'left-1'}`} />
           </button>
         </div>
+
+        {/* SIBO Guide link */}
+        <button
+          onClick={() => navigate('/sibo-guide')}
+          className="w-full bg-khaki/20 rounded-2xl p-4 shadow-[0_4px_12px_rgba(199,91,60,0.08)] text-left active:scale-[0.98] transition-transform"
+        >
+          <p className="font-heading font-semibold text-sm">
+            📋 {lang === 'es' ? 'Guía SIBO / Low-FODMAP' : 'SIBO / Low-FODMAP Guide'}
+          </p>
+          <p className="text-xs text-charcoal-light mt-1">
+            {lang === 'es'
+              ? 'Consulta las instrucciones de tu nutricionista: alimentos permitidos, prohibidos, porciones y recetas'
+              : 'Check your nutritionist instructions: allowed foods, forbidden, portions and recipes'}
+          </p>
+          <p className="text-[10px] text-terra mt-1 font-heading font-semibold">
+            Dr.ssa Barbara Ciccantelli — Plant Based Clinic →
+          </p>
+        </button>
 
         {/* Dark Mode */}
         <div className="bg-white rounded-2xl p-4 shadow-[0_4px_12px_rgba(199,91,60,0.08)] flex items-center justify-between">

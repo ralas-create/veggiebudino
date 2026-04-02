@@ -8,6 +8,7 @@ import Shopping from './pages/Shopping'
 import CookingMode from './pages/CookingMode'
 import Settings from './pages/Settings'
 import AddRecipe from './pages/AddRecipe'
+import SiboGuide from './pages/SiboGuide'
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/planner" element={<Planner />} />
         <Route path="/shopping" element={<Shopping />} />
         <Route path="/cooking" element={<CookingMode />} />
+        <Route path="/sibo-guide" element={<SiboGuide />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
       <NavBar />
