@@ -5,6 +5,8 @@ import useShoppingHistory from '../hooks/useShoppingHistory'
 import { getRecipeById } from '../data/recipes'
 import priceData from '../data/prices.json'
 
+const priceDate = priceData.lastUpdated
+
 const sectionOrder = ['produce', 'proteins', 'grains', 'frozen', 'dairy', 'pantry', 'other']
 const sectionEmoji = { produce: '🥬', proteins: '🫘', grains: '🌾', frozen: '❄️', dairy: '🥛', pantry: '🏪', other: '📦' }
 
@@ -217,7 +219,7 @@ export default function Shopping() {
               💰 {lang === 'es' ? `Coste (${people} pers.)` : `Cost (${people} ppl)`}
             </p>
             <p className="text-[10px] text-charcoal-light">
-              {lang === 'es' ? 'Precios más baratos entre Mercadona, Lidl, Dia y Carrefour' : 'Cheapest prices across Mercadona, Lidl, Dia and Carrefour'}
+              {lang === 'es' ? `Precios consultados el ${priceDate} (Mercadona, Lidl, Dia, Carrefour)` : `Prices checked on ${priceDate} (Mercadona, Lidl, Dia, Carrefour)`}
             </p>
           </div>
           <div className="text-right">
