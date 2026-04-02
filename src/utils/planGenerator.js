@@ -73,15 +73,25 @@ function selectRecipesForWeek(options = {}) {
 // === SIBO FEDE: breakfast and snack options per nutritionist ===
 
 const siboBreakfastOptions = [
-  { id: 'bf-porridge', name: { es: 'Porridge de avena con leche de soja, crema de almendras y fruta', en: 'Oat porridge with soy milk, almond butter and fruit' }, calories: 320 },
-  { id: 'bf-yogurt', name: { es: 'Yogur de soja con granola de trigo sarraceno y kiwi', en: 'Soy yogurt with buckwheat granola and kiwi' }, calories: 300 },
-  { id: 'bf-toast', name: { es: 'Tostadas con aceite y sal + café + fruta', en: 'Toast with oil and salt + coffee + fruit' }, calories: 280 },
+  { id: 'bf-porridge-berries', name: { es: 'Porridge de avena (30g) con leche de soja con calcio, crema de almendras y mirtillos/lampones', en: 'Oat porridge (30g) with calcium soy milk, almond butter and blueberries/raspberries' }, calories: 320 },
+  { id: 'bf-porridge-banana', name: { es: 'Porridge de avena (30g) con leche de soja con calcio, crema de almendras y banana (no madura)', en: 'Oat porridge (30g) with calcium soy milk, almond butter and banana (not ripe)' }, calories: 330 },
+  { id: 'bf-yogurt-kiwi', name: { es: 'Yogur de soja con calcio + granola de trigo sarraceno + 1 kiwi', en: 'Calcium soy yogurt + buckwheat granola + 1 kiwi' }, calories: 300 },
+  { id: 'bf-yogurt-orange', name: { es: 'Yogur de soja con calcio + copos de maíz (sin azúcar) + 1 naranja mediana', en: 'Calcium soy yogurt + corn flakes (no sugar) + 1 medium orange' }, calories: 290 },
+  { id: 'bf-yogurt-berries', name: { es: 'Yogur de soja con calcio + mijo inflado + fresas (125g)', en: 'Calcium soy yogurt + puffed millet + strawberries (125g)' }, calories: 280 },
+  { id: 'bf-toast-tomato', name: { es: '2 tostadas con AOVE y sal + café + 1 mandarina', en: '2 toasts with EVOO and salt + coffee + 1 tangerine' }, calories: 280 },
 ]
 
 const siboSnackOptions = [
-  { id: 'sn-fruit-nuts', name: { es: 'Fruta (baja en fructosa) + 10g almendras', en: 'Fruit (low fructose) + 10g almonds' }, calories: 120 },
-  { id: 'sn-yogurt', name: { es: 'Yogur de soja con fruta y semillas', en: 'Soy yogurt with fruit and seeds' }, calories: 150 },
-  { id: 'sn-chocolate', name: { es: 'Fruta + 10g chocolate negro fondant', en: 'Fruit + 10g dark chocolate' }, calories: 130 },
+  { id: 'sn-kiwi-almonds', name: { es: '1 kiwi + 10 almendras (10g)', en: '1 kiwi + 10 almonds (10g)' }, calories: 120 },
+  { id: 'sn-orange-walnuts', name: { es: '1 naranja mediana + 10g nueces', en: '1 medium orange + 10g walnuts' }, calories: 115 },
+  { id: 'sn-banana-almonds', name: { es: '1 banana (no madura) + 10 almendras', en: '1 banana (not ripe) + 10 almonds' }, calories: 140 },
+  { id: 'sn-strawberries-nuts', name: { es: 'Fresas (125g) + 10g nueces de macadamia', en: 'Strawberries (125g) + 10g macadamia nuts' }, calories: 110 },
+  { id: 'sn-tangerine-seeds', name: { es: '2 mandarinas + 10g semillas de calabaza', en: '2 tangerines + 10g pumpkin seeds' }, calories: 120 },
+  { id: 'sn-yogurt-berries-choc', name: { es: 'Yogur de soja + mirtillos + 10g chocolate negro fondant', en: 'Soy yogurt + blueberries + 10g dark chocolate' }, calories: 170 },
+  { id: 'sn-grapes-almonds', name: { es: 'Uva (125g) + 10 almendras', en: 'Grapes (125g) + 10 almonds' }, calories: 130 },
+  { id: 'sn-melon-seeds', name: { es: 'Melón (125g) + 10g semillas de girasol', en: 'Melon (125g) + 10g sunflower seeds' }, calories: 100 },
+  { id: 'sn-raspberries-choc', name: { es: 'Lampones (125g) + 10g chocolate negro fondant', en: 'Raspberries (125g) + 10g dark chocolate' }, calories: 115 },
+  { id: 'sn-pineapple-nuts', name: { es: 'Piña (125g) + 10g nueces pecan', en: 'Pineapple (125g) + 10g pecan nuts' }, calories: 120 },
 ]
 
 export function generateWeekPlan(options = {}) {
@@ -154,13 +164,16 @@ export function generateWeekPlan(options = {}) {
     plan[day].lunch = dayAssign.lunch ? dayAssign.lunch.id : null
     plan[day].dinner = dayAssign.dinner ? dayAssign.dinner.id : null
 
-    // SIBO mode: assign breakfast and snacks
+    // SIBO mode: assign breakfast and snacks — different each day
     if (siboOnly) {
-      const bfOptions = shuffle(siboBreakfastOptions)
-      const snOptions = shuffle(siboSnackOptions)
-      plan[day].breakfast = bfOptions[0].id
-      plan[day].snack1 = snOptions[0].id
-      plan[day].snack2 = snOptions[1 % snOptions.length].id
+      const dayIndex = days.indexOf(day)
+      plan[day].breakfast = siboBreakfastOptions[dayIndex % siboBreakfastOptions.length].id
+      // Snacks: pick two different ones, rotating through the week
+      const sn1Index = (dayIndex * 2) % siboSnackOptions.length
+      let sn2Index = (dayIndex * 2 + 1) % siboSnackOptions.length
+      if (sn2Index === sn1Index) sn2Index = (sn2Index + 1) % siboSnackOptions.length
+      plan[day].snack1 = siboSnackOptions[sn1Index].id
+      plan[day].snack2 = siboSnackOptions[sn2Index].id
     }
   })
 
