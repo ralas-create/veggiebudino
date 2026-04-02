@@ -1,4 +1,5 @@
 import allRecipes, { getIngredientCount, getSiboRecipes, getRecipeById } from '../data/recipes'
+import { scoreRecipeByPantry } from './pantryMatcher'
 
 /**
  * Generates a smart weekly meal plan optimized for batch cooking.
@@ -34,19 +35,25 @@ function hasNutritionalVariety(recipes) {
 }
 
 function selectRecipesForWeek(options = {}) {
-  const { siboOnly = false } = options
+  const { siboOnly = false, pantryItems = [] } = options
   let pool = siboOnly ? [...getSiboRecipes()] : [...allRecipes]
 
-  const scored = pool.map(r => ({ recipe: r, score: scoreForBatchCooking(r) }))
+  // Score: batch cooking suitability + pantry match bonus (pantry items weight heavily)
+  const scored = pool.map(r => {
+    const batchScore = scoreForBatchCooking(r)
+    const pantryScore = scoreRecipeByPantry(r, pantryItems) * 5 // pantry match is very important
+    return { recipe: r, score: batchScore + pantryScore, pantryMatches: scoreRecipeByPantry(r, pantryItems) }
+  })
   scored.sort((a, b) => b.score - a.score)
 
   const topPool = scored.slice(0, Math.min(20, scored.length))
-  const shuffled = shuffle(topPool)
+  // If pantry items exist, don't shuffle — keep pantry-matched recipes at the top
+  const sorted = pantryItems.length > 0 ? topPool : shuffle(topPool)
 
   const selected = []
   const usedIds = new Set()
 
-  for (const { recipe } of shuffled) {
+  for (const { recipe } of sorted) {
     if (selected.length >= 5) break
     if (usedIds.has(recipe.id)) continue
     selected.push(recipe)
