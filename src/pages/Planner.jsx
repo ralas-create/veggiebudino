@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import useWeekPlan from '../hooks/useWeekPlan'
 import { getRecipeById } from '../data/recipes'
-import { generateWeekPlan, getPlanStats } from '../utils/planGenerator'
+import { generateWeekPlan, getPlanStats, siboBreakfastOptions, siboSnackOptions } from '../utils/planGenerator'
 
 const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
@@ -15,11 +15,11 @@ export default function Planner() {
   const [cookingPlan, setCookingPlan] = useState(null)
   const [showStats, setShowStats] = useState(false)
 
+  const isSiboMode = localStorage.getItem('veggiebudino-sibo') === 'true'
   const hasPlan = Object.values(plan).some(d => d.lunch || d.dinner)
 
   const handleGenerate = () => {
-    const siboOnly = localStorage.getItem('veggiebudino-sibo') === 'true'
-    const result = generateWeekPlan({ siboOnly })
+    const result = generateWeekPlan({ siboOnly: isSiboMode })
     applyGeneratedPlan(result.plan)
     setCookingPlan(result.cookingPlan)
     setShowStats(true)
@@ -33,9 +33,24 @@ export default function Planner() {
 
   const stats = hasPlan ? getPlanStats(plan) : null
 
+  // Helper to get breakfast/snack name
+  const getBfName = (id) => {
+    const bf = siboBreakfastOptions.find(b => b.id === id)
+    return bf ? bf.name[lang] : ''
+  }
+  const getSnName = (id) => {
+    const sn = siboSnackOptions.find(s => s.id === id)
+    return sn ? sn.name[lang] : ''
+  }
+
   return (
     <div className="px-6 pt-6 pb-24">
       <h1 className="font-heading text-2xl font-bold">{t('planner.title')}</h1>
+      {isSiboMode && (
+        <p className="text-xs text-khaki bg-khaki/20 rounded-lg px-3 py-1.5 mt-2 font-heading font-semibold inline-block">
+          🌿 SIBO Fede — 5 {lang === 'es' ? 'comidas/día' : 'meals/day'}
+        </p>
+      )}
 
       {/* Generate button */}
       <button
@@ -45,9 +60,14 @@ export default function Planner() {
         ✨ {lang === 'es' ? 'Generar plan semanal inteligente' : 'Generate smart weekly plan'}
       </button>
       <p className="text-[10px] text-charcoal-light text-center mt-2">
-        {lang === 'es'
-          ? 'Selecciona 4-5 recetas, las reparte por la semana optimizando para batch cooking'
-          : 'Picks 4-5 recipes, distributes them across the week optimized for batch cooking'}
+        {isSiboMode
+          ? (lang === 'es'
+            ? 'Desayuno + tentempié + comida + merienda + cena — según protocolo Dra. Ciccantelli'
+            : 'Breakfast + snack + lunch + snack + dinner — per Dr. Ciccantelli protocol')
+          : (lang === 'es'
+            ? 'Selecciona 4-5 recetas, las reparte por la semana optimizando para batch cooking'
+            : 'Picks 4-5 recipes, distributes them across the week optimized for batch cooking')
+        }
       </p>
 
       {/* Stats summary */}
@@ -70,30 +90,28 @@ export default function Planner() {
               <p className="text-[9px] text-charcoal-light">{lang === 'es' ? 'proteína/día' : 'protein/day'}</p>
             </div>
           </div>
+          {stats.targetCalories && (
+            <p className="text-[10px] text-center mt-2 text-forest font-heading">
+              🎯 {lang === 'es' ? `Objetivo: ${stats.targetCalories} kcal/día (Dra. Ciccantelli)` : `Target: ${stats.targetCalories} kcal/day (Dr. Ciccantelli)`}
+            </p>
+          )}
         </div>
       )}
 
-      {/* Cooking plan (batch cooking summary) */}
+      {/* Cooking plan */}
       {cookingPlan && cookingPlan.length > 0 && (
         <div className="mt-4 bg-forest/10 rounded-2xl p-4">
           <h3 className="font-heading font-bold text-sm text-forest mb-2">
-            🍳 {lang === 'es' ? 'Lo que tienes que cocinar (modo domingo)' : 'What you need to cook (Sunday mode)'}
+            🍳 {lang === 'es' ? 'Lo que tienes que cocinar' : 'What you need to cook'}
           </h3>
-          <p className="text-[10px] text-charcoal-light mb-3">
-            {lang === 'es'
-              ? 'Cocina estos platos en cantidad y repártelos por la semana'
-              : 'Cook these dishes in bulk and spread them across the week'}
-          </p>
           {cookingPlan.map((item, i) => (
             <div key={i} className="flex items-center gap-3 py-2 border-b border-forest/10 last:border-0">
-              <span className="w-6 h-6 rounded-full bg-forest text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
-                {i + 1}
-              </span>
+              <span className="w-6 h-6 rounded-full bg-forest text-white flex items-center justify-center text-xs font-bold flex-shrink-0">{i + 1}</span>
               <div className="flex-1">
                 <p className="text-sm font-heading font-semibold">{item.recipeName[lang]}</p>
                 <p className="text-[10px] text-charcoal-light">
                   {item.cookingTime} min · {item.timesUsed}x {lang === 'es' ? 'esta semana' : 'this week'}
-                  {item.freezable && ` · ❄️ ${lang === 'es' ? 'congelable' : 'freezable'}`}
+                  {item.freezable && ` · ❄️`}
                 </p>
               </div>
             </div>
@@ -106,6 +124,7 @@ export default function Planner() {
         {days.map(day => {
           const lunchRecipe = plan[day]?.lunch ? getRecipeById(plan[day].lunch) : null
           const dinnerRecipe = plan[day]?.dinner ? getRecipeById(plan[day].dinner) : null
+          const hasBf = isSiboMode && plan[day]?.breakfast
 
           return (
             <div key={day} className="bg-white rounded-2xl p-4 shadow-[0_4px_12px_rgba(199,91,60,0.08)]">
@@ -113,48 +132,84 @@ export default function Planner() {
                 {t(`days.${day}`)}
               </p>
               <div className="mt-2 space-y-2">
+
+                {/* Breakfast (SIBO only) */}
+                {isSiboMode && (
+                  <div className="flex items-center gap-3 border-l-4 border-khaki rounded-lg p-2.5 bg-cream">
+                    <span className="text-base">☀️</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-heading text-[9px] text-charcoal-light uppercase">{lang === 'es' ? 'Desayuno' : 'Breakfast'}</p>
+                      <p className="text-xs font-heading font-semibold truncate">
+                        {hasBf ? getBfName(plan[day].breakfast) : (lang === 'es' ? 'Toca para añadir' : 'Tap to add')}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Snack 1 (SIBO only) */}
+                {isSiboMode && (
+                  <div className="flex items-center gap-3 border-l-4 border-khaki/50 rounded-lg p-2.5 bg-cream">
+                    <span className="text-base">🍎</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-heading text-[9px] text-charcoal-light uppercase">{lang === 'es' ? 'Tentempié' : 'Snack'}</p>
+                      <p className="text-xs font-heading font-semibold truncate">
+                        {plan[day]?.snack1 ? getSnName(plan[day].snack1) : '—'}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Lunch */}
                 <div
-                  className="flex items-center gap-3 border-l-4 border-terra rounded-lg p-3 bg-cream cursor-pointer active:scale-[0.98] transition-transform"
+                  className="flex items-center gap-3 border-l-4 border-terra rounded-lg p-2.5 bg-cream cursor-pointer active:scale-[0.98] transition-transform"
                   onClick={() => lunchRecipe && navigate(`/recipes/${lunchRecipe.id}`)}
                 >
-                  <span className="text-lg">🥗</span>
+                  <span className="text-base">🥗</span>
                   <div className="flex-1 min-w-0">
-                    <p className="font-heading text-[10px] text-charcoal-light uppercase">{t('planner.lunch')}</p>
+                    <p className="font-heading text-[9px] text-charcoal-light uppercase">{t('planner.lunch')}</p>
                     {lunchRecipe ? (
                       <>
-                        <p className="text-sm font-heading font-semibold truncate">{lunchRecipe.name[lang]}</p>
-                        <p className="text-[10px] text-charcoal-light">{lunchRecipe.time} min · {lunchRecipe.nutrition.calories} kcal</p>
+                        <p className="text-xs font-heading font-semibold truncate">{lunchRecipe.name[lang]}</p>
+                        <p className="text-[9px] text-charcoal-light">{lunchRecipe.time} min · {lunchRecipe.nutrition.calories} kcal</p>
                       </>
                     ) : (
-                      <p className="text-sm text-charcoal-light">{t('home.emptySlot')}</p>
+                      <p className="text-xs text-charcoal-light">{t('home.emptySlot')}</p>
                     )}
                   </div>
-                  {lunchRecipe?.siboFriendly && (
-                    <span className="bg-khaki rounded-full px-2 py-0.5 text-[8px] font-heading font-semibold text-[#6B5A2A]">SIBO</span>
-                  )}
                 </div>
+
+                {/* Snack 2 (SIBO only) */}
+                {isSiboMode && (
+                  <div className="flex items-center gap-3 border-l-4 border-khaki/50 rounded-lg p-2.5 bg-cream">
+                    <span className="text-base">🍫</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-heading text-[9px] text-charcoal-light uppercase">{lang === 'es' ? 'Merienda' : 'Snack'}</p>
+                      <p className="text-xs font-heading font-semibold truncate">
+                        {plan[day]?.snack2 ? getSnName(plan[day].snack2) : '—'}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Dinner */}
                 <div
-                  className="flex items-center gap-3 border-l-4 border-forest rounded-lg p-3 bg-cream cursor-pointer active:scale-[0.98] transition-transform"
+                  className="flex items-center gap-3 border-l-4 border-forest rounded-lg p-2.5 bg-cream cursor-pointer active:scale-[0.98] transition-transform"
                   onClick={() => dinnerRecipe && navigate(`/recipes/${dinnerRecipe.id}`)}
                 >
-                  <span className="text-lg">🍽️</span>
+                  <span className="text-base">🍽️</span>
                   <div className="flex-1 min-w-0">
-                    <p className="font-heading text-[10px] text-charcoal-light uppercase">{t('planner.dinner')}</p>
+                    <p className="font-heading text-[9px] text-charcoal-light uppercase">{t('planner.dinner')}</p>
                     {dinnerRecipe ? (
                       <>
-                        <p className="text-sm font-heading font-semibold truncate">{dinnerRecipe.name[lang]}</p>
-                        <p className="text-[10px] text-charcoal-light">{dinnerRecipe.time} min · {dinnerRecipe.nutrition.calories} kcal</p>
+                        <p className="text-xs font-heading font-semibold truncate">{dinnerRecipe.name[lang]}</p>
+                        <p className="text-[9px] text-charcoal-light">{dinnerRecipe.time} min · {dinnerRecipe.nutrition.calories} kcal</p>
                       </>
                     ) : (
-                      <p className="text-sm text-charcoal-light">{t('home.emptySlot')}</p>
+                      <p className="text-xs text-charcoal-light">{t('home.emptySlot')}</p>
                     )}
                   </div>
-                  {dinnerRecipe?.siboFriendly && (
-                    <span className="bg-khaki rounded-full px-2 py-0.5 text-[8px] font-heading font-semibold text-[#6B5A2A]">SIBO</span>
-                  )}
                 </div>
+
               </div>
             </div>
           )
@@ -177,6 +232,16 @@ export default function Planner() {
             {t('planner.clearWeek')}
           </button>
         </div>
+      )}
+
+      {/* SIBO guide link */}
+      {isSiboMode && (
+        <button
+          onClick={() => navigate('/sibo-guide')}
+          className="w-full mt-4 bg-khaki/20 rounded-xl py-3 font-heading text-xs font-semibold text-[#6B5A2A]"
+        >
+          📋 {lang === 'es' ? 'Consultar guía de la nutricionista' : 'View nutritionist guide'}
+        </button>
       )}
     </div>
   )
