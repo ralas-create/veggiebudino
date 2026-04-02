@@ -1,4 +1,4 @@
-import allRecipes, { getIngredientCount } from '../data/recipes'
+import allRecipes, { getIngredientCount, getSiboRecipes } from '../data/recipes'
 
 /**
  * Generates a smart weekly meal plan optimized for batch cooking.
@@ -42,10 +42,8 @@ function hasNutritionalVariety(recipes) {
 function selectRecipesForWeek(options = {}) {
   const { siboOnly = false } = options
 
-  let pool = [...allRecipes]
-  if (siboOnly) {
-    pool = pool.filter(r => r.siboFriendly)
-  }
+  // In SIBO mode, use ONLY the dedicated SIBO-Fede recipes
+  let pool = siboOnly ? [...getSiboRecipes()] : [...allRecipes]
 
   // Score and sort by batch-cooking suitability
   const scored = pool.map(r => ({ recipe: r, score: scoreForBatchCooking(r) }))

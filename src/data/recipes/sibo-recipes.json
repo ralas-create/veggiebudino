@@ -1,0 +1,346 @@
+[
+  {
+    "id": "sibo-01",
+    "name": { "es": "Pasta de maíz con pesto de edamame y calabacín", "en": "Corn Pasta with Edamame Pesto and Zucchini" },
+    "description": { "es": "Receta de la nutricionista: pasta sin gluten con pesto de edamame y calabacín salteado", "en": "Nutritionist recipe: GF pasta with edamame pesto and sautéed zucchini" },
+    "time": 20, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": true, "freezeNotes": { "es": "El pesto congela bien por separado", "en": "Pesto freezes well separately" },
+    "siboFriendly": true, "tags": ["quick", "few-ingredients", "high-protein", "sibo-fede"],
+    "calories_per_serving": 480,
+    "ingredients": [
+      { "name": { "es": "Pasta de maíz o legumbres", "en": "Corn or legume pasta" }, "qty": "60", "unit": "g", "section": "grains" },
+      { "name": { "es": "Edamame congelado", "en": "Frozen edamame" }, "qty": "120", "unit": "g", "section": "frozen" },
+      { "name": { "es": "Calabacín", "en": "Zucchini" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" },
+      { "name": { "es": "Sal y pimienta", "en": "Salt and pepper" }, "qty": "", "unit": "", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cocinar la pasta de maíz al dente.", "Hervir edamame 3 min. Triturar con medio cucharada de AOVE hasta hacer pesto.", "Saltear calabacín en rodajas en sartén 4-5 min.", "Mezclar pasta con pesto de edamame y calabacín. Salpimentar."],
+      "en": ["Cook corn pasta al dente.", "Boil edamame 3 min. Blend with half tbsp EVOO into pesto.", "Sauté sliced zucchini 4-5 min.", "Toss pasta with edamame pesto and zucchini. Season."]
+    },
+    "nutrition": { "calories": 480, "protein": 22, "carbs": 58, "fat": 16, "fiber": 10, "iron": 5.0, "calcium": 100, "b12": 0, "zinc": 2.5, "omega3": 0.5, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-02",
+    "name": { "es": "Judías verdes al vapor con tofu salteado y pan", "en": "Steamed Green Beans with Pan-Fried Tofu and Bread" },
+    "description": { "es": "Receta de la nutricionista: judías verdes al vapor, tofu dorado y pan", "en": "Nutritionist recipe: steamed green beans, golden tofu and bread" },
+    "time": 15, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["quick", "few-ingredients", "high-protein", "sibo-fede"],
+    "calories_per_serving": 420,
+    "ingredients": [
+      { "name": { "es": "Judías verdes", "en": "Green beans" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Tofu firme", "en": "Firm tofu" }, "qty": "150", "unit": "g", "section": "proteins" },
+      { "name": { "es": "Pan (sin gluten o de masa madre)", "en": "Bread (GF or sourdough)" }, "qty": "90", "unit": "g", "section": "grains" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" },
+      { "name": { "es": "Sal, pimienta, especias al gusto", "en": "Salt, pepper, spices to taste" }, "qty": "", "unit": "", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cocinar judías verdes al vapor 8-10 min hasta tiernas.", "Cortar tofu en láminas y dorar en sartén con aceite 3-4 min por lado.", "Servir con pan y salpimentar."],
+      "en": ["Steam green beans 8-10 min until tender.", "Slice tofu and pan-fry with oil 3-4 min per side.", "Serve with bread and season."]
+    },
+    "nutrition": { "calories": 420, "protein": 25, "carbs": 38, "fat": 18, "fiber": 8, "iron": 5.5, "calcium": 280, "b12": 0, "zinc": 2.5, "omega3": 0.2, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-03",
+    "name": { "es": "Crema de calabaza con lentejas decorticadas y quinoa", "en": "Pumpkin Cream with Hulled Lentils and Quinoa" },
+    "description": { "es": "Receta de la nutricionista: crema de calabaza con lentejas rojas y quinoa o mijo", "en": "Nutritionist recipe: pumpkin cream with red lentils and quinoa or millet" },
+    "time": 30, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": true, "freezeNotes": { "es": "Congela bien sin la quinoa", "en": "Freezes well without quinoa" },
+    "siboFriendly": true, "tags": ["quick", "batch-cooking", "high-protein", "sibo-fede"],
+    "calories_per_serving": 450,
+    "ingredients": [
+      { "name": { "es": "Calabaza", "en": "Pumpkin/squash" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Lentejas rojas decorticadas", "en": "Hulled red lentils" }, "qty": "50", "unit": "g (secas)", "section": "grains" },
+      { "name": { "es": "Quinoa o mijo o trigo sarraceno", "en": "Quinoa or millet or buckwheat" }, "qty": "60", "unit": "g (seco)", "section": "grains" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" },
+      { "name": { "es": "Sal y especias", "en": "Salt and spices" }, "qty": "", "unit": "", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cocinar quinoa aparte (1:2 agua, 15 min).", "Cortar calabaza, cocer con lentejas rojas en agua/caldo 20 min hasta tiernas.", "Triturar todo con batidora. Añadir aceite.", "Servir crema con quinoa cocida por encima."],
+      "en": ["Cook quinoa separately (1:2 water, 15 min).", "Chop pumpkin, cook with red lentils in water/broth 20 min until tender.", "Blend everything. Add oil.", "Serve cream topped with cooked quinoa."]
+    },
+    "nutrition": { "calories": 450, "protein": 20, "carbs": 65, "fat": 12, "fiber": 12, "iron": 5.5, "calcium": 60, "b12": 0, "zinc": 3.0, "omega3": 0.2, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-04",
+    "name": { "es": "Piadina de maíz con hummus, rúcula y tomates cherry", "en": "Corn Flatbread with Hummus, Arugula and Cherry Tomatoes" },
+    "description": { "es": "Receta de la nutricionista: piadina con hummus de garbanzos, rúcula y tomates", "en": "Nutritionist recipe: flatbread with chickpea hummus, arugula and tomatoes" },
+    "time": 10, "difficulty": "easy", "servings": 1, "meal": ["lunch"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["quick", "few-ingredients", "high-protein", "sibo-fede"],
+    "calories_per_serving": 430,
+    "ingredients": [
+      { "name": { "es": "Piadina de maíz (sin gluten)", "en": "Corn flatbread (GF)" }, "qty": "1", "unit": "unit", "section": "grains" },
+      { "name": { "es": "Garbanzos en conserva (escurridos)", "en": "Canned chickpeas (drained)" }, "qty": "120", "unit": "g", "section": "grains" },
+      { "name": { "es": "Tahini", "en": "Tahini" }, "qty": "10", "unit": "g", "section": "pantry" },
+      { "name": { "es": "Zumo de limón", "en": "Lemon juice" }, "qty": "1", "unit": "tbsp", "section": "produce" },
+      { "name": { "es": "Rúcula", "en": "Arugula" }, "qty": "30", "unit": "g", "section": "produce" },
+      { "name": { "es": "Tomates cherry", "en": "Cherry tomatoes" }, "qty": "60", "unit": "g", "section": "produce" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Triturar garbanzos con tahini, limón, sal y hierbas al gusto hasta hacer hummus.", "Untar hummus en la piadina.", "Añadir rúcula y tomates cherry cortados.", "Aliñar con aceite."],
+      "en": ["Blend chickpeas with tahini, lemon, salt and herbs into hummus.", "Spread hummus on flatbread.", "Add arugula and halved cherry tomatoes.", "Drizzle with oil."]
+    },
+    "nutrition": { "calories": 430, "protein": 18, "carbs": 48, "fat": 18, "fiber": 10, "iron": 4.5, "calcium": 100, "b12": 0, "zinc": 2.5, "omega3": 0.1, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-05",
+    "name": { "es": "Crema de zanahorias y jengibre con garbanzos", "en": "Carrot Ginger Soup with Chickpeas" },
+    "description": { "es": "Receta de la nutricionista: crema de zanahorias, patata y jengibre con garbanzos cocidos", "en": "Nutritionist recipe: carrot, potato and ginger cream with cooked chickpeas" },
+    "time": 30, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": true, "freezeNotes": { "es": "Congela bien sin los garbanzos", "en": "Freezes well without chickpeas" },
+    "siboFriendly": true, "tags": ["quick", "batch-cooking", "high-protein", "sibo-fede"],
+    "calories_per_serving": 420,
+    "ingredients": [
+      { "name": { "es": "Zanahorias", "en": "Carrots" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Patata", "en": "Potato" }, "qty": "150", "unit": "g", "section": "produce" },
+      { "name": { "es": "Jengibre fresco rallado", "en": "Fresh grated ginger" }, "qty": "1", "unit": "tsp", "section": "produce" },
+      { "name": { "es": "Garbanzos en conserva (escurridos)", "en": "Canned chickpeas (drained)" }, "qty": "120", "unit": "g", "section": "grains" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" },
+      { "name": { "es": "Sal y especias", "en": "Salt and spices" }, "qty": "", "unit": "", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Dorar aceite con jengibre rallado.", "Añadir zanahorias y patata en trozos. Cubrir con agua o caldo vegetal.", "Cocer 20 min hasta tierno. Triturar.", "Añadir garbanzos cocidos enteros y aceite crudo si no se usó todo."],
+      "en": ["Brown oil with grated ginger.", "Add chopped carrots and potato. Cover with water or broth.", "Cook 20 min until tender. Blend.", "Add whole cooked chickpeas and remaining oil raw."]
+    },
+    "nutrition": { "calories": 420, "protein": 15, "carbs": 60, "fat": 14, "fiber": 12, "iron": 4.5, "calcium": 80, "b12": 0, "zinc": 2.0, "omega3": 0.1, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-06",
+    "name": { "es": "Sopa de mijo con acelgas y garbanzos", "en": "Millet Soup with Chard and Chickpeas" },
+    "description": { "es": "Receta de la nutricionista: sopa con mijo, parte verde de acelgas y garbanzos cocidos", "en": "Nutritionist recipe: soup with millet, green chard and cooked chickpeas" },
+    "time": 30, "difficulty": "easy", "servings": 1, "meal": ["dinner"],
+    "freezable": true, "freezeNotes": { "es": "Congela bien", "en": "Freezes well" },
+    "siboFriendly": true, "tags": ["quick", "batch-cooking", "high-protein", "sibo-fede"],
+    "calories_per_serving": 440,
+    "ingredients": [
+      { "name": { "es": "Mijo", "en": "Millet" }, "qty": "70", "unit": "g (seco)", "section": "grains" },
+      { "name": { "es": "Acelgas (parte verde)", "en": "Chard (green part)" }, "qty": "150", "unit": "g", "section": "produce" },
+      { "name": { "es": "Garbanzos en conserva (escurridos)", "en": "Canned chickpeas (drained)" }, "qty": "120", "unit": "g", "section": "grains" },
+      { "name": { "es": "Zanahoria", "en": "Carrot" }, "qty": "1", "unit": "unit", "section": "produce" },
+      { "name": { "es": "Cebolleta (solo parte verde)", "en": "Scallion (green part only)" }, "qty": "1", "unit": "unit", "section": "produce" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cocer mijo aparte (1:2 agua). Sofreír con aceite zanahoria y parte verde de cebolleta.", "Añadir parte verde de acelgas y garbanzos ya cocidos. Cubrir con agua o caldo.", "Cuando verduras tiernas, añadir mijo cocido. Salpimentar.", "Condimentar con aceite restante en crudo."],
+      "en": ["Cook millet separately (1:2 water). Sauté carrot and green scallion in oil.", "Add green chard and cooked chickpeas. Cover with water/broth.", "When vegetables tender, add cooked millet. Season.", "Dress with remaining oil raw."]
+    },
+    "nutrition": { "calories": 440, "protein": 18, "carbs": 62, "fat": 14, "fiber": 12, "iron": 5.5, "calcium": 100, "b12": 0, "zinc": 2.5, "omega3": 0.1, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-07",
+    "name": { "es": "Ensalada templada de trigo sarraceno con calabacín y garbanzos", "en": "Warm Buckwheat Salad with Zucchini and Chickpeas" },
+    "description": { "es": "Receta de la nutricionista: trigo sarraceno con calabacín a la plancha y garbanzos", "en": "Nutritionist recipe: buckwheat with grilled zucchini and chickpeas" },
+    "time": 25, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["quick", "high-protein", "sibo-fede"],
+    "calories_per_serving": 460,
+    "ingredients": [
+      { "name": { "es": "Trigo sarraceno (o mijo o quinoa)", "en": "Buckwheat (or millet or quinoa)" }, "qty": "70", "unit": "g (seco)", "section": "grains" },
+      { "name": { "es": "Calabacín", "en": "Zucchini" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Garbanzos en conserva (escurridos)", "en": "Canned chickpeas (drained)" }, "qty": "120", "unit": "g", "section": "grains" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" },
+      { "name": { "es": "Hierbas aromáticas al gusto", "en": "Fresh herbs to taste" }, "qty": "", "unit": "", "section": "produce" }
+    ],
+    "steps": {
+      "es": ["Cocer trigo sarraceno (1:2 agua sin tocarlo hasta que absorba, reposar 10-15 min, esgranar con tenedor).", "Cortar calabacín y hacerlo a la plancha.", "Mezclar con garbanzos cocidos.", "Aliñar con AOVE (también como citronette con limón) y hierbas."],
+      "en": ["Cook buckwheat (1:2 water, don't stir until absorbed, rest 10-15 min, fluff with fork).", "Slice and grill zucchini.", "Mix with cooked chickpeas.", "Dress with EVOO (also as citronette with lemon) and herbs."]
+    },
+    "nutrition": { "calories": 460, "protein": 18, "carbs": 62, "fat": 14, "fiber": 11, "iron": 5.0, "calcium": 80, "b12": 0, "zinc": 2.5, "omega3": 0.1, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-08",
+    "name": { "es": "Bowl caliente de tofu marinado con arroz y verduras", "en": "Warm Marinated Tofu Rice Bowl with Vegetables" },
+    "description": { "es": "Receta de la nutricionista: tofu marinado en miso y jengibre con arroz y verduras", "en": "Nutritionist recipe: tofu marinated in miso and ginger with rice and vegetables" },
+    "time": 25, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["quick", "high-protein", "sibo-fede"],
+    "calories_per_serving": 480,
+    "ingredients": [
+      { "name": { "es": "Arroz basmati blanco", "en": "White basmati rice" }, "qty": "60", "unit": "g (seco)", "section": "grains" },
+      { "name": { "es": "Tofu firme", "en": "Firm tofu" }, "qty": "150", "unit": "g", "section": "proteins" },
+      { "name": { "es": "Jengibre fresco rallado", "en": "Fresh grated ginger" }, "qty": "1", "unit": "tsp", "section": "produce" },
+      { "name": { "es": "Pasta de miso (1 cucharada)", "en": "Miso paste (1 tbsp)" }, "qty": "15", "unit": "g", "section": "pantry" },
+      { "name": { "es": "Salsa de soja/tamari (1 cucharada)", "en": "Soy sauce/tamari (1 tbsp)" }, "qty": "15", "unit": "ml", "section": "pantry" },
+      { "name": { "es": "Cúrcuma", "en": "Turmeric" }, "qty": "1", "unit": "tsp", "section": "pantry" },
+      { "name": { "es": "Cebolleta (solo parte verde)", "en": "Scallion (green part only)" }, "qty": "1", "unit": "unit", "section": "produce" },
+      { "name": { "es": "Zanahoria en cubitos", "en": "Diced carrot" }, "qty": "100", "unit": "g", "section": "produce" },
+      { "name": { "es": "Acelga (parte verde)", "en": "Chard (green part)" }, "qty": "100", "unit": "g", "section": "produce" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Marinar tofu cortado en cubos con jengibre, miso, tamari, cúrcuma y un poco de agua.", "En casserola, dorar con aceite la parte verde de cebolleta, zanahoria y acelga verde.", "Añadir arroz y dorar ligeramente. Añadir agua (2x volumen del arroz).", "Cocer 10 min. Últimos 2 min añadir tofu marinado."],
+      "en": ["Marinate cubed tofu with ginger, miso, tamari, turmeric and a splash of water.", "In a pot, sauté green scallion, carrot and green chard in oil.", "Add rice and lightly toast. Add water (2x rice volume).", "Cook 10 min. Add marinated tofu for the last 2 min."]
+    },
+    "nutrition": { "calories": 480, "protein": 26, "carbs": 55, "fat": 18, "fiber": 6, "iron": 6.0, "calcium": 300, "b12": 0, "zinc": 3.0, "omega3": 0.2, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-09",
+    "name": { "es": "Piadina de maíz con hummus, hinojo y zanahoria cruda", "en": "Corn Flatbread with Hummus, Fennel and Raw Carrot" },
+    "description": { "es": "Receta de la nutricionista: piadina con hummus, hinojo crudo y zanahoria cruda", "en": "Nutritionist recipe: flatbread with hummus, raw fennel and raw carrot" },
+    "time": 10, "difficulty": "easy", "servings": 1, "meal": ["lunch"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["quick", "few-ingredients", "high-protein", "sibo-fede"],
+    "calories_per_serving": 400,
+    "ingredients": [
+      { "name": { "es": "Piadina de maíz (sin gluten)", "en": "Corn flatbread (GF)" }, "qty": "1", "unit": "unit", "section": "grains" },
+      { "name": { "es": "Garbanzos en conserva (escurridos)", "en": "Canned chickpeas (drained)" }, "qty": "120", "unit": "g", "section": "grains" },
+      { "name": { "es": "Tahini", "en": "Tahini" }, "qty": "10", "unit": "g", "section": "pantry" },
+      { "name": { "es": "Zumo de limón", "en": "Lemon juice" }, "qty": "1", "unit": "tbsp", "section": "produce" },
+      { "name": { "es": "Hinojo crudo", "en": "Raw fennel" }, "qty": "75", "unit": "g", "section": "produce" },
+      { "name": { "es": "Zanahoria cruda", "en": "Raw carrot" }, "qty": "100", "unit": "g", "section": "produce" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Triturar garbanzos con tahini, limón y sal.", "Cortar hinojo y zanahoria en bastones finos.", "Untar hummus en piadina, rellenar con verduras crudas. Aliñar con aceite."],
+      "en": ["Blend chickpeas with tahini, lemon and salt.", "Cut fennel and carrot into thin sticks.", "Spread hummus on flatbread, fill with raw vegetables. Dress with oil."]
+    },
+    "nutrition": { "calories": 400, "protein": 16, "carbs": 48, "fat": 16, "fiber": 12, "iron": 4.0, "calcium": 100, "b12": 0, "zinc": 2.0, "omega3": 0.1, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-10",
+    "name": { "es": "Pasta de maíz/legumbres con calabacín y rúcula", "en": "Corn/Legume Pasta with Zucchini and Arugula" },
+    "description": { "es": "Receta de la nutricionista: pasta sin gluten con calabacín salteado y rúcula fresca", "en": "Nutritionist recipe: GF pasta with sautéed zucchini and fresh arugula" },
+    "time": 15, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["quick", "few-ingredients", "sibo-fede"],
+    "calories_per_serving": 380,
+    "ingredients": [
+      { "name": { "es": "Pasta de maíz o legumbres", "en": "Corn or legume pasta" }, "qty": "70", "unit": "g", "section": "grains" },
+      { "name": { "es": "Calabacín", "en": "Zucchini" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Rúcula", "en": "Arugula" }, "qty": "30", "unit": "g", "section": "produce" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" },
+      { "name": { "es": "Sal y pimienta", "en": "Salt and pepper" }, "qty": "", "unit": "", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cocinar pasta al dente.", "Saltear calabacín en rodajas con aceite 4-5 min.", "Mezclar pasta con calabacín y rúcula fresca. Salpimentar."],
+      "en": ["Cook pasta al dente.", "Sauté sliced zucchini in oil 4-5 min.", "Toss pasta with zucchini and fresh arugula. Season."]
+    },
+    "nutrition": { "calories": 380, "protein": 14, "carbs": 55, "fat": 12, "fiber": 8, "iron": 4.0, "calcium": 60, "b12": 0, "zinc": 2.0, "omega3": 0.1, "vitaminD": 0 },
+    "source": { "name": "Dr.ssa Ciccantelli — Plant Based Clinic", "author": "Receta de la nutricionista", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-11",
+    "name": { "es": "Arroz basmati con tofu crujiente y espinacas", "en": "Basmati Rice with Crispy Tofu and Spinach" },
+    "description": { "es": "Arroz basmati con tofu dorado, espinacas salteadas y semillas de calabaza", "en": "Basmati rice with golden tofu, sautéed spinach and pumpkin seeds" },
+    "time": 20, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["quick", "high-protein", "sibo-fede"],
+    "calories_per_serving": 470,
+    "ingredients": [
+      { "name": { "es": "Arroz basmati blanco", "en": "White basmati rice" }, "qty": "60", "unit": "g (seco)", "section": "grains" },
+      { "name": { "es": "Tofu firme", "en": "Firm tofu" }, "qty": "150", "unit": "g", "section": "proteins" },
+      { "name": { "es": "Espinacas", "en": "Spinach" }, "qty": "150", "unit": "g", "section": "produce" },
+      { "name": { "es": "Semillas de calabaza", "en": "Pumpkin seeds" }, "qty": "10", "unit": "g", "section": "pantry" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" },
+      { "name": { "es": "Tamari", "en": "Tamari" }, "qty": "1", "unit": "tsp", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cocinar arroz basmati.", "Cortar tofu en cubos, dorar en sartén con un poco de aceite y tamari.", "Saltear espinacas 2 min.", "Montar: arroz, tofu, espinacas, semillas de calabaza. Aliñar con aceite restante."],
+      "en": ["Cook basmati rice.", "Cube tofu, pan-fry with a bit of oil and tamari.", "Sauté spinach 2 min.", "Assemble: rice, tofu, spinach, pumpkin seeds. Dress with remaining oil."]
+    },
+    "nutrition": { "calories": 470, "protein": 28, "carbs": 48, "fat": 18, "fiber": 6, "iron": 7.0, "calcium": 350, "b12": 0, "zinc": 3.5, "omega3": 0.3, "vitaminD": 0 },
+    "source": { "name": "Basada en guías Dr.ssa Ciccantelli", "author": "Cumple protocolo SIBO Fede", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-12",
+    "name": { "es": "Quinoa con tempeh a las hierbas y zanahorias asadas", "en": "Quinoa with Herbed Tempeh and Roasted Carrots" },
+    "description": { "es": "Quinoa con tempeh marinado en hierbas, limón y zanahorias al horno", "en": "Quinoa with herb-lemon marinated tempeh and oven-roasted carrots" },
+    "time": 30, "difficulty": "easy", "servings": 1, "meal": ["dinner"],
+    "freezable": true, "freezeNotes": { "es": "El tempeh marinado congela bien", "en": "Marinated tempeh freezes well" },
+    "siboFriendly": true, "tags": ["quick", "high-protein", "sibo-fede"],
+    "calories_per_serving": 460,
+    "ingredients": [
+      { "name": { "es": "Quinoa", "en": "Quinoa" }, "qty": "70", "unit": "g (seca)", "section": "grains" },
+      { "name": { "es": "Tempeh", "en": "Tempeh" }, "qty": "80", "unit": "g", "section": "proteins" },
+      { "name": { "es": "Zanahorias", "en": "Carrots" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Zumo de limón", "en": "Lemon juice" }, "qty": "1", "unit": "tbsp", "section": "produce" },
+      { "name": { "es": "Romero o tomillo fresco", "en": "Fresh rosemary or thyme" }, "qty": "", "unit": "", "section": "produce" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cocinar quinoa. Asar zanahorias en bastones a 200°C 20 min con un poco de aceite.", "Cortar tempeh en láminas, marinar con limón, hierbas, sal y pimienta.", "Dorar tempeh en sartén 3 min por lado.", "Servir quinoa con tempeh, zanahorias y aceite restante."],
+      "en": ["Cook quinoa. Roast carrot sticks at 200°C 20 min with a bit of oil.", "Slice tempeh, marinate with lemon, herbs, salt and pepper.", "Pan-fry tempeh 3 min per side.", "Serve quinoa with tempeh, carrots and remaining oil."]
+    },
+    "nutrition": { "calories": 460, "protein": 22, "carbs": 55, "fat": 16, "fiber": 10, "iron": 5.5, "calcium": 120, "b12": 0, "zinc": 3.0, "omega3": 0.2, "vitaminD": 0 },
+    "source": { "name": "Basada en guías Dr.ssa Ciccantelli", "author": "Cumple protocolo SIBO Fede", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-13",
+    "name": { "es": "Patatas con tofu y judías verdes al horno", "en": "Potatoes with Tofu and Roasted Green Beans" },
+    "description": { "es": "Patatas al horno con tofu especiado y judías verdes — comida completa", "en": "Baked potatoes with spiced tofu and green beans — complete meal" },
+    "time": 35, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["high-protein", "sibo-fede"],
+    "calories_per_serving": 450,
+    "ingredients": [
+      { "name": { "es": "Patatas", "en": "Potatoes" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Tofu firme", "en": "Firm tofu" }, "qty": "150", "unit": "g", "section": "proteins" },
+      { "name": { "es": "Judías verdes", "en": "Green beans" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Pimentón dulce y comino", "en": "Sweet paprika and cumin" }, "qty": "1", "unit": "tsp each", "section": "pantry" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cortar patatas en gajos, mezclar con aceite y pimentón. Hornear a 200°C 25 min.", "Cortar tofu en cubos, especiar con comino y sal. Dorar en sartén.", "Cocer judías al vapor 8 min.", "Servir todo junto."],
+      "en": ["Cut potatoes into wedges, toss with oil and paprika. Bake at 200°C 25 min.", "Cube tofu, season with cumin and salt. Pan-fry.", "Steam green beans 8 min.", "Serve everything together."]
+    },
+    "nutrition": { "calories": 450, "protein": 24, "carbs": 50, "fat": 16, "fiber": 10, "iron": 5.5, "calcium": 280, "b12": 0, "zinc": 2.5, "omega3": 0.2, "vitaminD": 0 },
+    "source": { "name": "Basada en guías Dr.ssa Ciccantelli", "author": "Cumple protocolo SIBO Fede (patatas max 2x/semana)", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-14",
+    "name": { "es": "Arroz con lentejas en conserva, espinacas y semillas", "en": "Rice with Canned Lentils, Spinach and Seeds" },
+    "description": { "es": "Arroz basmati con lentejas bien escurridas, espinacas y semillas de calabaza", "en": "Basmati rice with well-drained lentils, spinach and pumpkin seeds" },
+    "time": 20, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": true, "freezeNotes": { "es": "Congela bien", "en": "Freezes well" },
+    "siboFriendly": true, "tags": ["quick", "few-ingredients", "high-protein", "sibo-fede"],
+    "calories_per_serving": 440,
+    "ingredients": [
+      { "name": { "es": "Arroz basmati blanco", "en": "White basmati rice" }, "qty": "60", "unit": "g (seco)", "section": "grains" },
+      { "name": { "es": "Lentejas en conserva (bien escurridas)", "en": "Canned lentils (well drained)" }, "qty": "120", "unit": "g", "section": "grains" },
+      { "name": { "es": "Espinacas", "en": "Spinach" }, "qty": "150", "unit": "g", "section": "produce" },
+      { "name": { "es": "Semillas de calabaza", "en": "Pumpkin seeds" }, "qty": "10", "unit": "g", "section": "pantry" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" },
+      { "name": { "es": "Zumo de limón", "en": "Lemon juice" }, "qty": "1", "unit": "tsp", "section": "produce" }
+    ],
+    "steps": {
+      "es": ["Cocinar arroz. Calentar lentejas escurridas en sartén con un poco de comino.", "Saltear espinacas 2 min.", "Montar: arroz, lentejas, espinacas. Añadir semillas, limón y aceite."],
+      "en": ["Cook rice. Warm drained lentils in pan with a bit of cumin.", "Sauté spinach 2 min.", "Assemble: rice, lentils, spinach. Add seeds, lemon and oil."]
+    },
+    "nutrition": { "calories": 440, "protein": 20, "carbs": 58, "fat": 14, "fiber": 10, "iron": 6.5, "calcium": 120, "b12": 0, "zinc": 3.0, "omega3": 0.2, "vitaminD": 0 },
+    "source": { "name": "Basada en guías Dr.ssa Ciccantelli", "author": "Cumple protocolo SIBO Fede", "url": "https://www.plantbasedclinic.com" }
+  },
+  {
+    "id": "sibo-15",
+    "name": { "es": "Tofu salteado con arroz y calabacín", "en": "Stir-Fried Tofu with Rice and Zucchini" },
+    "description": { "es": "Tofu dorado con calabacín y arroz basmati — rápido y sencillo", "en": "Golden tofu with zucchini and basmati rice — quick and simple" },
+    "time": 20, "difficulty": "easy", "servings": 1, "meal": ["lunch", "dinner"],
+    "freezable": false, "freezeNotes": { "es": "", "en": "" },
+    "siboFriendly": true, "tags": ["quick", "few-ingredients", "high-protein", "sibo-fede"],
+    "calories_per_serving": 450,
+    "ingredients": [
+      { "name": { "es": "Arroz basmati blanco", "en": "White basmati rice" }, "qty": "60", "unit": "g (seco)", "section": "grains" },
+      { "name": { "es": "Tofu firme", "en": "Firm tofu" }, "qty": "150", "unit": "g", "section": "proteins" },
+      { "name": { "es": "Calabacín", "en": "Zucchini" }, "qty": "200", "unit": "g", "section": "produce" },
+      { "name": { "es": "Tamari", "en": "Tamari" }, "qty": "1", "unit": "tsp", "section": "pantry" },
+      { "name": { "es": "Aceite de oliva virgen extra", "en": "Extra virgin olive oil" }, "qty": "10", "unit": "g (1 cuch)", "section": "pantry" }
+    ],
+    "steps": {
+      "es": ["Cocinar arroz. Cortar tofu en cubos, dorar en sartén con aceite y tamari 5 min.", "Saltear calabacín en rodajas 4 min.", "Servir arroz con tofu y calabacín."],
+      "en": ["Cook rice. Cube tofu, pan-fry with oil and tamari 5 min.", "Sauté sliced zucchini 4 min.", "Serve rice with tofu and zucchini."]
+    },
+    "nutrition": { "calories": 450, "protein": 26, "carbs": 48, "fat": 18, "fiber": 5, "iron": 5.5, "calcium": 280, "b12": 0, "zinc": 2.5, "omega3": 0.2, "vitaminD": 0 },
+    "source": { "name": "Basada en guías Dr.ssa Ciccantelli", "author": "Cumple protocolo SIBO Fede", "url": "https://www.plantbasedclinic.com" }
+  }
+]

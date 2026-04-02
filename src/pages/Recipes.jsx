@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { getAllRecipesWithCustom, filterRecipes } from '../data/recipes'
+import { getAllRecipesWithCustom, getSiboRecipes, filterRecipes } from '../data/recipes'
 import RecipeCard from '../components/recipes/RecipeCard'
 
 const filterButtons = [
@@ -19,7 +19,8 @@ export default function Recipes() {
   const [activeFilter, setActiveFilter] = useState('all')
   const [search, setSearch] = useState('')
 
-  const allRecipes = getAllRecipesWithCustom()
+  const isSiboMode = localStorage.getItem('veggiebudino-sibo') === 'true'
+  const allRecipes = isSiboMode ? getSiboRecipes() : getAllRecipesWithCustom()
   const currentFilterObj = filterButtons.find(f => f.key === activeFilter)?.filter || {}
   const finalFilter = {
     ...currentFilterObj,

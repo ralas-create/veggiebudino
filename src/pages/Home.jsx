@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import allRecipes, { getRecipeById } from '../data/recipes'
+import allRecipes, { getRecipeById, getSiboRecipes } from '../data/recipes'
 import useWeekPlan from '../hooks/useWeekPlan'
 import RecipeCard from '../components/recipes/RecipeCard'
 
@@ -18,8 +18,10 @@ export default function Home() {
   const todayLunch = plan[today]?.lunch ? getRecipeById(plan[today].lunch) : null
   const todayDinner = plan[today]?.dinner ? getRecipeById(plan[today].dinner) : null
 
-  const quickRecipes = allRecipes.filter(r => r.time <= 20).slice(0, 3)
-  const siboRecipes = allRecipes.filter(r => r.siboFriendly).slice(0, 3)
+  const isSiboMode = localStorage.getItem('veggiebudino-sibo') === 'true'
+  const displayRecipes = isSiboMode ? getSiboRecipes() : allRecipes
+  const quickRecipes = displayRecipes.filter(r => r.time <= 25).slice(0, 3)
+  const siboRecipesPreview = getSiboRecipes().slice(0, 3)
 
   return (
     <div className="px-6 pt-6 pb-24">
@@ -147,7 +149,7 @@ export default function Home() {
           </button>
         </div>
         <div className="mt-3 grid grid-cols-1 gap-4">
-          {siboRecipes.map(recipe => (
+          {siboRecipesPreview.map(recipe => (
             <RecipeCard key={recipe.id} recipe={recipe} />
           ))}
         </div>

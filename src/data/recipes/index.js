@@ -1,4 +1,5 @@
 import recipes from './all-recipes.json'
+import siboRecipes from './sibo-recipes.json'
 
 function getCustomRecipes() {
   try {
@@ -8,20 +9,22 @@ function getCustomRecipes() {
   }
 }
 
-function getAllRecipes() {
-  return [...recipes, ...getCustomRecipes()]
-}
+// Normal mode: all recipes (non-SIBO) + custom
+// SIBO mode: only SIBO-Fede recipes + custom SIBO ones
+const normalRecipes = recipes.map(r => ({ ...r, siboFriendly: false }))
 
-const allRecipes = recipes // static export for imports that need the array
-
-export default allRecipes
+export default normalRecipes
 
 export function getAllRecipesWithCustom() {
-  return getAllRecipes()
+  return [...normalRecipes, ...getCustomRecipes()]
+}
+
+export function getSiboRecipes() {
+  return [...siboRecipes, ...getCustomRecipes().filter(r => r.siboFriendly)]
 }
 
 export function getRecipeById(id) {
-  return getAllRecipes().find(r => r.id === id)
+  return [...normalRecipes, ...siboRecipes, ...getCustomRecipes()].find(r => r.id === id)
 }
 
 export function getIngredientCount(recipe) {
